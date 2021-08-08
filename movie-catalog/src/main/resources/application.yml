@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+management.endpoints.web.exposure.include: hystrix.stream
+
+
+spring:
+  application:
+    name: movie-catalog-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: eureka-0
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+
+
+
+

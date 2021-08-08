@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: movie-info-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+server:
+  port: 8082
+
+api:
+  key: c98494b4c5bcd0e0c1798384900fac1e
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: eureka-0
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka

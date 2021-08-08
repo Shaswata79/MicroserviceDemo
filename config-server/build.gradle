@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.2'
+	id 'org.springframework.boot' version '2.5.3'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	//id 'com.palantir.docker' version '0.22.1'
@@ -19,7 +19,7 @@ ext {
 
 /*
 docker {
-	name "movie-info-api"
+	name "config-server-api"
 	dockerfile file('Dockerfile')
 	copySpec.from(jar).rename(".*","app.jar")
 	buildArgs(['JAR_FILE': "app.jar"])
@@ -28,12 +28,8 @@ docker {
  */
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'org.springframework.cloud:spring-cloud-starter-config'
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.5.2'
-	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: '3.0.3'
 }
 
 dependencyManagement {
