@@ -14,9 +14,20 @@ spec:
     spec:
       containers:
       - name: movie-info-app
-        image: shaswata79/microservice-demo:movie-info-api
+        image: shaswata79/microservice-demo-v2:movie-info-api
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8082
+        env:
+          - name: EUREKA_INSTANCE_PREFER-IP-ADDRESS
+            value: 'true'
+          - name: EUREKA_INSTANCE_HOSTNAME
+            value: eureka-0
+          - name : EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+            value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 
 ---

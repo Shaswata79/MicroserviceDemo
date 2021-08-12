@@ -1,26 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-server-app
+  name: cloud-gateway-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: config-server-app
+      app: cloud-gateway-app
   template:
     metadata:
       labels:
-        app: config-server-app
+        app: cloud-gateway-app
     spec:
       containers:
-      - name: config-server-app
-        image: shaswata79/microservice-demo-v2:config-server-api
+      - name: cloud-gateway-app
+        image: shaswata79/microservice-demo-v2:api-gateway
         resources:
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
             cpu: "500m"
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8888
+          - containerPort: 9191
         env:
           - name: EUREKA_INSTANCE_PREFER-IP-ADDRESS
             value: 'true'
@@ -29,15 +30,19 @@ spec:
           - name : EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
             value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
+
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-server-svc
+  name: cloud-gateway-svc
 spec:
+  type: LoadBalancer
   selector:
-    app: config-server-app
+    app: cloud-gateway-app
   ports:
   - port: 80
-    targetPort: 8888
+    targetPort: 9191
+    protocol: TCP
+

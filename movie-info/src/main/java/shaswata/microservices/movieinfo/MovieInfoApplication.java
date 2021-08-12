@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableEurekaClient
-@RefreshScope
 public class MovieInfoApplication {
 
 	public static void main(String[] args) {

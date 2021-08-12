@@ -16,10 +16,21 @@ spec:
     spec:
       containers:
       - name: movie-catalog-app
-        image: shaswata79/microservice-demo:movie-catalog
+        image: shaswata79/microservice-demo-v2:movie-catalog-api
+        resources:
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         imagePullPolicy: Always
         ports:
         - containerPort: 8081
+        env:
+          - name: EUREKA_INSTANCE_PREFER-IP-ADDRESS
+            value: 'true'
+          - name: EUREKA_INSTANCE_HOSTNAME
+            value: eureka-0
+          - name : EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+            value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
 
 
 ---

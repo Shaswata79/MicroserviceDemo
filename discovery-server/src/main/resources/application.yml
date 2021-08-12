@@ -11,10 +11,10 @@ spring:
       uri: http://localhost:8888
 
 eureka:
-  instance:
-    hostname: "${HOSTNAME}.eureka"
+#  instance:
+#    hostname: "${HOSTNAME}.eureka"       //Needed for kubernetes. Not configured here. Configured in kubernetes resource files.
   client:
     register-with-eureka: false
     fetch-registry: false
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_ADDRESS}
+#    serviceUrl:
+#      defaultZone: ${EUREKA_SERVER_ADDRESS}      #Needed for kubernetes. Not configured here. Configured in kubernetes resource files.

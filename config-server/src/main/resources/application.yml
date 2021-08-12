@@ -11,12 +11,28 @@ spring:
 server:
   port: 8888
 
+
 eureka:
   instance:
-    preferIpAddress: true
-    hostname: eureka-0
+    hostname: localhost
+    prefer-ip-address: false
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+      defaultZone: http://localhost:8761/eureka/
+
+
+
+
+
+#Needed for kubernetes. Not configured here. Configured in kubernetes resource files.
+#eureka:
+#  instance:
+#    preferIpAddress: true
+#    hostname: eureka-0
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka

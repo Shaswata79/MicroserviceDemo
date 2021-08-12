@@ -4,6 +4,7 @@ metadata:
   name: eureka-configmap
 data:
   eureka-service-address: http://eureka-0.eureka:8761/eureka
+  
 
 ---
 #Headless service
@@ -43,7 +44,7 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: shaswata79/microservice-demo:discovery-server-api
+        image: shaswata79/microservice-demo-v2:discovery-server-api
         imagePullPolicy: Always
         ports:
         - containerPort: 8761
@@ -53,6 +54,10 @@ spec:
               configMapKeyRef:
                 name: eureka-configmap
                 key: eureka-service-address
+          - name: EUREKA_INSTANCE_HOSTNAME
+            value: "${HOSTNAME}.eureka"
+          - name: EUREKA_CLIENT_SERVICE-URL_DEFAULT-ZONE
+            value: ${EUREKA_SERVER_ADDRESS}
         
 
 
